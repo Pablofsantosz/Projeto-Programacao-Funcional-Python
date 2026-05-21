@@ -1,6 +1,7 @@
 from medicamentos import (
     criar_medicamento,
-    adicionar_medicamento
+    adicionar_medicamento,
+    buscar_medicamento_por_nome
 )
 
 medicamentos = []
@@ -17,6 +18,21 @@ while True:
 
     if opcao == "1":
         nome = input("Nome: ")
+        
+        medicamento_antigo = (
+            buscar_medicamento_por_nome(medicamentos,nome)
+        )
+        
+        # Verifica se já existe
+        if medicamento_antigo:
+
+            print("\nVocê já cadastrou esse medicamento.")
+
+            print(
+                "Horários antigos:",
+                medicamento_antigo["horarios"]
+            )
+            
         dosagem = input("Dosagem: ")
 
         intervalo = int(
@@ -54,10 +70,46 @@ while True:
         
 
     elif opcao == "2":
-        print("Listar")
+        if not medicamentos:
+
+            print("\nNenhum medicamento cadastrado.")
+        else:
+            print("\n=== Lista de Medicamentos ===")
+            for med in medicamentos:
+                print(
+                        "Nome:",med["nome"]
+                    )
+
+                print(
+                    "Dosagem:",med["dosagem"]
+                    )
+
+                print(
+                        "Horários:",med["horarios"]
+                    )
+
+                print(
+                        "Total necessário:",med["total_necessario"]
+                    )
+
+                print(
+                    "Quantidade na caixa:",med["quantidade_caixa"]
+                )
+
+                if med["caixa_suficiente"]:
+
+                    print("Caixa suficiente")
+
+                else:
+
+                    print(
+                        "Faltam",med["faltam"],"comprimidos para o final do tratamento"
+                    )
+
 
     elif opcao == "0":
         break
 
     else:
         print("Opção inválida")
+        

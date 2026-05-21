@@ -37,33 +37,16 @@ def criar_medicamento(nome,dosagem,intervalo,comprimidos_por_dose,duracao_tratam
     return {
 
         "nome": nome,
-
         "dosagem": dosagem,
-
         "intervalo": intervalo,
-
         "horarios": horarios,
-
-        "comprimidos_por_dose":
-        comprimidos_por_dose,
-
-        "duracao_tratamento":
-        duracao_tratamento,
-
-        "quantidade_caixa":
-        quantidade_caixa,
-
-        "comprimidos_por_dia":
-        comprimidos_por_dia,
-
-        "total_necessario":
-        total_necessario,
-
-        "caixa_suficiente":
-        caixa_suficiente,
-
-        "faltam":
-        faltam
+        "comprimidos_por_dose": comprimidos_por_dose,
+        "duracao_tratamento": duracao_tratamento,
+        "quantidade_caixa": quantidade_caixa,
+        "comprimidos_por_dia": comprimidos_por_dia,
+        "total_necessario": total_necessario,
+        "caixa_suficiente": caixa_suficiente,    
+        "faltam": faltam
     }
     
 def adicionar_medicamento(
@@ -73,3 +56,16 @@ def adicionar_medicamento(
 
     # Retorna uma NOVA lista
     return lista + [medicamento]
+
+def buscar_medicamento_por_nome(lista,nome):
+
+    encontrados = list(
+        filter(
+            lambda med:med["nome"].lower() == nome.lower(), lista
+        )
+    )
+
+    if encontrados:
+        return encontrados[0]
+
+    return None
