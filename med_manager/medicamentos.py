@@ -69,3 +69,15 @@ def buscar_medicamento_por_nome(lista,nome):
         return encontrados[0]
 
     return None
+
+
+def formatar_horarios(horarios):
+
+    return list(
+        map(
+            lambda hora:
+            f"{hora:02d}:00",
+
+            horarios
+        )
+    )

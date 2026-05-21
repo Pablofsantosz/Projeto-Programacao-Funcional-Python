@@ -1,8 +1,10 @@
 from medicamentos import (
     criar_medicamento,
     adicionar_medicamento,
-    buscar_medicamento_por_nome
+    buscar_medicamento_por_nome,
+    formatar_horarios
 )
+
 
 medicamentos = []
 
@@ -83,10 +85,18 @@ while True:
                 print(
                     "Dosagem:",med["dosagem"]
                     )
+                
+                
+                horarios_formatados = (
+                    formatar_horarios(
+                        med["horarios"]
+                    )
+                )
 
                 print(
-                        "Horários:",med["horarios"]
-                    )
+                    "Horários:",
+                    horarios_formatados
+                )
 
                 print(
                         "Total necessário:",med["total_necessario"]
