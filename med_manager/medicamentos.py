@@ -65,3 +65,11 @@ def criar_medicamento(nome,dosagem,intervalo,comprimidos_por_dose,duracao_tratam
         "faltam":
         faltam
     }
+    
+def adicionar_medicamento(
+    lista,
+    medicamento
+):
+
+    # Retorna uma NOVA lista
+    return lista + [medicamento]
