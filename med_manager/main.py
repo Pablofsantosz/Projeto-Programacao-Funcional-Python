@@ -5,23 +5,22 @@ from medicamentos import (
     gerar_rotina_diaria
 )
 
-
 medicamentos = []
 
-#tbm quero uma funcionalidade de tipo quando eu for add um novo medicamente pergunta se eu ja tomei ele antes de colocalo no programa, se sim, mostra os horarios que eu tomei e pergunta se quero manter ou alterar
 while True:
 
     print("\n==== GERENCIADOR DE MEDICAMENTOS ====")
     print("1 - Cadastrar medicamento")
+    print("2 - Mostrar medicamentos")
     print("3 - Mostrar quadro do dia")
     print("0 - Sair")
 
     opcao = input("Escolha: ")
 
     if opcao == "1":
+
         nome = input("Nome: ")
-        
-            
+
         dosagem = input("Dosagem: ")
 
         intervalo = int(
@@ -40,6 +39,10 @@ while True:
             input("Quantidade na caixa: ")
         )
 
+        horario_inicial = int(
+            input("Horário inicial: ")
+        )
+
         novo = criar_medicamento(
             nome,
             dosagem,
@@ -47,33 +50,38 @@ while True:
             comprimidos_por_dose,
             duracao_tratamento,
             quantidade_caixa,
-            0
+            horario_inicial
         )
 
         medicamentos = adicionar_medicamento(
-        medicamentos,
-        novo
+            medicamentos,
+            novo
         )
 
         print("\nMedicamento cadastrado!")
-        
 
     elif opcao == "2":
+
         if not medicamentos:
 
             print("\nNenhum medicamento cadastrado.")
+
         else:
-            print("\n=== Lista de Medicamentos ===")
+
+            print("\n=== LISTA DE MEDICAMENTOS ===")
+
             for med in medicamentos:
-                print(
-                        "Nome:",med["nome"]
-                    )
 
                 print(
-                    "Dosagem:",med["dosagem"]
-                    )
-                
-                
+                    "\nNome:",
+                    med["nome"]
+                )
+
+                print(
+                    "Dosagem:",
+                    med["dosagem"]
+                )
+
                 horarios_formatados = (
                     formatar_horarios(
                         med["horarios"]
@@ -86,22 +94,9 @@ while True:
                 )
 
                 print(
-                        "Total necessário:",med["total_necessario"]
-                    )
-
-                print(
-                    "Quantidade na caixa:",med["quantidade_caixa"]
+                    "Total necessário:",
+                    med["total_necessario"]
                 )
-
-                if med["caixa_suficiente"]:
-
-                    print("Caixa suficiente")
-
-                else:
-
-                    print(
-                        "Faltam",med["faltam"],"comprimidos para o final do tratamento"
-                    )
 
     elif opcao == "3":
 
@@ -120,9 +115,11 @@ while True:
             for nome in rotina[horario]:
 
                 print("-", nome)
+
     elif opcao == "0":
+
         break
 
     else:
+
         print("Opção inválida")
-        

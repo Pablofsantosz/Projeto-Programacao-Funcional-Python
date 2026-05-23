@@ -11,27 +11,17 @@ def criar_medicamento(nome,dosagem,intervalo,comprimidos_por_dose,duracao_tratam
     # Quantas vezes o remédio é tomado por dia
     doses_por_dia = len(horarios)
 
-    # Quantidade total por dia
+    # Total de comprimidos por dia
     comprimidos_por_dia = (
         doses_por_dia *
         comprimidos_por_dose
     )
 
+
     # Quantidade total necessária
     total_necessario = (
         comprimidos_por_dia *
         duracao_tratamento
-    )
-
-    # Verifica se a caixa é suficiente
-    caixa_suficiente = (
-        quantidade_caixa >= total_necessario
-    )
-
-    # Quantos comprimidos faltam
-    faltam = max(
-        0,
-        total_necessario - quantidade_caixa
     )
 
     return {
@@ -45,8 +35,7 @@ def criar_medicamento(nome,dosagem,intervalo,comprimidos_por_dose,duracao_tratam
         "quantidade_caixa": quantidade_caixa,
         "comprimidos_por_dia": comprimidos_por_dia,
         "total_necessario": total_necessario,
-        "caixa_suficiente": caixa_suficiente,    
-        "faltam": faltam
+        
     }
     
 def adicionar_medicamento(
@@ -57,18 +46,22 @@ def adicionar_medicamento(
     # Retorna uma NOVA lista
     return lista + [medicamento]
 
-def buscar_medicamento_por_nome(lista,nome):
 
-    encontrados = list(
-        filter(
-            lambda med:med["nome"].lower() == nome.lower(), lista
-        )
-    )
 
-    if encontrados:
-        return encontrados[0]
+def gerar_rotina_diaria(medicamentos):
 
-    return None
+    rotina = {}
+
+    for med in medicamentos:
+
+        for horario in med["horarios"]:
+
+            rotina[horario] = (
+                rotina.get(horario, [])
+                + [med["nome"]]
+            )
+
+    return rotina
 
 
 def formatar_horarios(horarios):
