@@ -1,8 +1,8 @@
 from medicamentos import (
     criar_medicamento,
     adicionar_medicamento,
-    buscar_medicamento_por_nome,
-    formatar_horarios
+    formatar_horarios,
+    gerar_rotina_diaria
 )
 
 
@@ -13,7 +13,7 @@ while True:
 
     print("\n==== GERENCIADOR DE MEDICAMENTOS ====")
     print("1 - Cadastrar medicamento")
-    print("2 - Listar medicamentos")
+    print("3 - Mostrar quadro do dia")
     print("0 - Sair")
 
     opcao = input("Escolha: ")
@@ -21,19 +21,6 @@ while True:
     if opcao == "1":
         nome = input("Nome: ")
         
-        medicamento_antigo = (
-            buscar_medicamento_por_nome(medicamentos,nome)
-        )
-        
-        # Verifica se já existe
-        if medicamento_antigo:
-
-            print("\nVocê já cadastrou esse medicamento.")
-
-            print(
-                "Horários antigos:",
-                medicamento_antigo["horarios"]
-            )
             
         dosagem = input("Dosagem: ")
 
@@ -116,7 +103,23 @@ while True:
                         "Faltam",med["faltam"],"comprimidos para o final do tratamento"
                     )
 
+    elif opcao == "3":
 
+        rotina = gerar_rotina_diaria(
+            medicamentos
+        )
+
+        print("\n=== QUADRO DE HORÁRIOS ===")
+
+        for horario in sorted(rotina):
+
+            print(
+                f"\n{horario:02d}:00"
+            )
+
+            for nome in rotina[horario]:
+
+                print("-", nome)
     elif opcao == "0":
         break
 
