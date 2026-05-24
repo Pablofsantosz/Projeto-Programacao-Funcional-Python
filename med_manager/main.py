@@ -1,4 +1,5 @@
 import time
+import winsound
 from datetime import datetime
 from medicamentos import criar_medicamento, adicionar_medicamento, atualizar_medicamento
 from horarios import calcular_proximo_horario, obter_medicamentos_pendentes, formatar_data
@@ -17,7 +18,7 @@ while True:
     if opcao == "1":
         nome = input("Nome: ")
         dosagem = input("Dosagem: ")
-        intervalo = int(input("Intervalo em minutos (para teste): "))        
+        intervalo = int(input("Intervalo em minutos: "))        
         comprimidos_por_dose = int(input("Comprimidos por dose: "))
         duracao_tratamento = int(input("Duração do tratamento (dias): "))
         quantidade_caixa = int(input("Quantidade na caixa: "))
@@ -54,6 +55,7 @@ while True:
 
                 for med in pendentes:
                     print(f"\n[ALERTA] Hora de tomar: {med['nome']} ({med['dosagem']})")
+                    winsound.PlaySound("Assobio-WhatsApp.wav", winsound.SND_FILENAME)
                     confirmacao = input("Pressione ENTER para confirmar que tomou (ou digite 's' para pular): ")
                     
                     if confirmacao.lower() != 's':
