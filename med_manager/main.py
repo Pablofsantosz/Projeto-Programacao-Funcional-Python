@@ -55,23 +55,29 @@ while True:
 
                 for med in pendentes:
                     print(f"\n[ALERTA] Hora de tomar: {med['nome']} ({med['dosagem']})")
+                    
                     winsound.PlaySound("Assobio-WhatsApp.wav", winsound.SND_FILENAME)
+                    
                     confirmacao = input("Pressione ENTER para confirmar que tomou (ou digite 's' para pular): ")
                     
                     if confirmacao.lower() != 's':
                         nova_dose = datetime.now()
+                        
                         medicamentos = atualizar_medicamento(medicamentos, med['nome'], nova_dose)
                         
-                        med_atualizado = next(m for m in medicamentos if m['nome'] == med['nome'])
-                        proximo = calcular_proximo_horario(med_atualizado)
                         
-                        print(f"Dose confirmada! Próxima dose será às {formatar_data(proximo)}")
+                        med_atualizado = next(m for m in medicamentos if m['nome'] == med['nome'])
+                        
+                        
+                        if med_atualizado["quantidade_caixa"] <= 0:
+                            print(f"\n[AVISO] A caixa de {med['nome']} acabou. O medicamento foi removido do monitoramento.")
+                            winsound.PlaySound("zoeira-efeito-mario-morre.wav", winsound.SND_FILENAME)
+                            medicamentos = list(filter(lambda m: m['nome'] != med['nome'], medicamentos))
+                        else:
+                            proximo = calcular_proximo_horario(med_atualizado)
+                            print(f"Dose confirmada. Restam {med_atualizado['quantidade_caixa']} comprimidos na caixa.")
+                            print(f"Próxima dose será às {formatar_data(proximo)}")
 
                 time.sleep(5)
         except KeyboardInterrupt:
             print("\nMonitoramento pausado.")
-
-    elif opcao == "0":
-        break
-    else:
-        print("Opção inválida")

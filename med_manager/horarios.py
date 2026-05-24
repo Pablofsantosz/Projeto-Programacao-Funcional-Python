@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 def calcular_proximo_horario(medicamento):
-    return medicamento["ultima_dose"] + timedelta(minutes=medicamento["intervalo"])
+    return medicamento["ultima_dose"] + timedelta(seconds=medicamento["intervalo"])
 
 def esta_na_hora(medicamento, hora_atual):
     proximo = calcular_proximo_horario(medicamento)

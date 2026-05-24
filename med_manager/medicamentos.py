@@ -17,7 +17,11 @@ def adicionar_medicamento(lista, medicamento):
 def atualizar_medicamento(lista, nome_medicamento, nova_data):
     return list(
         map(
-            lambda med: {**med, "ultima_dose": nova_data} if med["nome"] == nome_medicamento else med,
+            lambda med: {
+                **med, 
+                "ultima_dose": nova_data,
+                "quantidade_caixa": med["quantidade_caixa"] - med["comprimidos_por_dose"]
+            } if med["nome"] == nome_medicamento else med,
             lista
         )
     )
