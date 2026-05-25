@@ -1,6 +1,13 @@
 from datetime import datetime
 
 def criar_medicamento(nome, dosagem, intervalo, comprimidos_por_dose, duracao_tratamento, quantidade_caixa):
+    
+
+    total_necessario = (
+        comprimidos_por_dose *
+        duracao_tratamento
+    )
+    
     return {
         "nome": nome,
         "dosagem": dosagem,
@@ -8,10 +15,13 @@ def criar_medicamento(nome, dosagem, intervalo, comprimidos_por_dose, duracao_tr
         "comprimidos_por_dose": comprimidos_por_dose,
         "duracao_tratamento": duracao_tratamento,
         "quantidade_caixa": quantidade_caixa,
+        "total_necessario": total_necessario,
         "ultima_dose": datetime.now()
     }
 
+
 def adicionar_medicamento(lista, medicamento):
+
     return lista + [medicamento]
 
 def atualizar_medicamento(lista, nome_medicamento, nova_data):

@@ -1,11 +1,24 @@
+# horarios.py
+
 from datetime import timedelta
 
+
 def calcular_proximo_horario(medicamento):
-    return medicamento["ultima_dose"] + timedelta(seconds=medicamento["intervalo"])
+
+    return (
+        medicamento["ultima_dose"]
+        + timedelta(
+            seconds=medicamento["intervalo"]
+        )
+    )
+
 
 def esta_na_hora(medicamento, hora_atual):
+
     proximo = calcular_proximo_horario(medicamento)
+
     return hora_atual >= proximo
+
 
 def obter_medicamentos_pendentes(medicamentos, hora_atual):
     return list(
@@ -15,5 +28,7 @@ def obter_medicamentos_pendentes(medicamentos, hora_atual):
         )
     )
 
+
 def formatar_data(data):
+
     return data.strftime("%d/%m/%Y %H:%M:%S")
