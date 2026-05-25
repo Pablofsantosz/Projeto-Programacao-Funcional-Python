@@ -10,7 +10,7 @@ def esta_na_hora(medicamento, hora_atual):
 def obter_medicamentos_pendentes(medicamentos, hora_atual):
     return list(
         filter(
-            lambda med: esta_na_hora(med, hora_atual),
+            lambda med: med["quantidade_caixa"] > 0 and esta_na_hora(med, hora_atual),
             medicamentos
         )
     )
