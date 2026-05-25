@@ -124,7 +124,7 @@ while True:
 
                         print( f"\n[AVISO]")
                         print( f"O medicamento {med['nome']} acabou.")
-                        winsound.PlaySound("zoeira-efeito-mario-morre.wav",winsound.SND_FILENAME)
+                        winsound.PlaySound("alerta-tm-converted.wav",winsound.SND_FILENAME)
                     
                 time.sleep(5)
 
