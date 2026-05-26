@@ -1,5 +1,3 @@
-# horarios.py
-
 from datetime import timedelta
 
 
