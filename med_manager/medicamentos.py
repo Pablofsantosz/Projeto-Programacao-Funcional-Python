@@ -20,9 +20,7 @@ def criar_medicamento(nome, dosagem, intervalo, comprimidos_por_dose, duracao_tr
     }
 
 
-def adicionar_medicamento(lista, medicamento):
-
-    return lista + [medicamento]
+adicionar_medicamento = lambda lista,medicamento: lista + [medicamento]
 
 def atualizar_medicamento(lista, nome_medicamento, nova_data):
     return list(
