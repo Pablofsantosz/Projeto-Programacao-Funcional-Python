@@ -116,7 +116,7 @@ while True:
                         print(f"O medicamento {med['nome']} está próximo de acabar.")
 
                         print(f"Restam apenas {restante} comprimidos.")
-                        winsound.PlaySound("Assobio-WhatsApp.wav", winsound.SND_FILENAME)
+                        winsound.PlaySound("alerta-tm-converted.wav", winsound.SND_FILENAME)
 
 
                    
@@ -124,7 +124,7 @@ while True:
 
                         print( f"\n[AVISO]")
                         print( f"O medicamento {med['nome']} acabou.")
-                        winsound.PlaySound("alerta-tm-converted.wav",winsound.SND_FILENAME)
+                        winsound.PlaySound("RemedioAcabou.wav",winsound.SND_FILENAME)
                     
                 time.sleep(5)
 
